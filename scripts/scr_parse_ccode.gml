@@ -8,11 +8,12 @@ switch (switchblade) {
     //standard dialog codes
     case"[useav]": UseAvatar = true; SetterTarget = settertargets.avatar; break;
     case"[noav]":  UseAvatar = false; break;
-    case"[nline]": LineToDraw += 1; StringWidth = 0; break;
-    case"[speed]": SetterTarget = settertargets.textspeed; Setter = 1; break; // to avoid zero
+    case"[nline]": scr_newline(); break;
+    //case"[pause]": alarm[0] = Setter; break;
+    case"[speed]": SetterTarget = settertargets.textspeed; Setter = 1; break; //to avoid zero
     case"[def]":   SetterTarget = settertargets.defaults; break; //restore speed to default
     case"[next]":  AcceptingInput = true; break; //display a thingy
-    case"[skip]":  scr_newline(); break; //skip to next line of dialogue
+    case"[skip]":  scr_get_next_line(); break; //skip to next line of dialogue
     case"[midline]": with MyCaller { event_user(1); } break;//execute code midline
     case"[END]":     with MyCaller { Responding = false; event_user(2); }
                      instance_destroy();

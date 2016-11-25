@@ -118,7 +118,7 @@ if AcceptingInput { //if we are displaying a [next] arrow
         }
     
     if (PressedKeyA or PressedKeyS) {
-        scr_newline(); //proceed to the next string
+        scr_get_next_line(); //proceed to the next string
         //we are no longer waiting for the user to press the button
         AcceptingInput = false;
         }

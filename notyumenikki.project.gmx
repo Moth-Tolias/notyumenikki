@@ -138,12 +138,12 @@
       <script>scripts\scr_draw_char.gml</script>
       <script>scripts\scr_get_next_string_legacy.gml</script>
       <script>scripts\scr_return_textinput.gml</script>
+      <script>scripts\scr_get_next_line.gml</script>
       <script>scripts\scr_newline.gml</script>
     </scripts>
     <script>scripts\scr_camera_shake.gml</script>
     <script>scripts\scr_move.gml</script>
     <script>scripts\scr_set_direction.gml</script>
-    <script>scripts\script15_nyi.gml</script>
     <script>scripts\scr_update_dialoguepath.gml</script>
   </scripts>
   <fonts name="fonts">
