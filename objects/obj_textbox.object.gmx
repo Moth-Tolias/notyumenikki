@@ -57,7 +57,7 @@ SetterTarget = settertargets.outofbounds; //
 
 //constants [well, sort of]
 //font sizes
-FontSize_Default = 12;
+FontSize_Default = 8;
 FontSize_Small = 8;
 FontSize_Big = 16;
 NewlineSize = 12;

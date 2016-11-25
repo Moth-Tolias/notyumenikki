@@ -25,7 +25,8 @@
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>//set vars
+            <string>global.PixelFont = font_add_sprite(spr_font_apple2,32,false,0);
+//set vars
 MenuChoice = 0;
 SelectionChoice = 0;
 AcceptingInput = true//false;
@@ -282,7 +283,7 @@ window_set_size(global.ScreenSize * DEFAULT_SCREEN_X, global.ScreenSize * DEFAUL
             <kind>1</kind>
             <string>///draw stuff
 draw_set_colour(c_white);//change this
-draw_set_font(font_default);
+draw_set_font(global.PixelFont);
 draw_set_valign(fa_middle);
 draw_set_halign(fa_center);
 
