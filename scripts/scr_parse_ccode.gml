@@ -24,8 +24,8 @@ switch (switchblade) {
     case "[wobble]": break;
     
     //special
-    case "[shake]": scr_camera_shake(global.ShakePref, 1, 0); SetterTarget = settertargets.shakepower; break;
-    case "[shakeD]": scr_camera_shake(global.ShakePref, 1, ((Setter + 1) * 0.1)); Setter = 0; break;
+    case "[shake]": scr_begin_shake(global.ShakePref, 1, 0); SetterTarget = settertargets.shakepower; break;
+    case "[shakeD]": scr_begin_shake(global.ShakePref, 1, ((Setter + 1) * 0.1)); Setter = 0; break;
     case "[event]": break;
     
     //input codes

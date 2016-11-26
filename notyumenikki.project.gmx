@@ -146,6 +146,7 @@
     <script>scripts\scr_move.gml</script>
     <script>scripts\scr_set_direction.gml</script>
     <script>scripts\scr_update_dialoguepath.gml</script>
+    <script>scripts\scr_begin_shake.gml</script>
   </scripts>
   <fonts name="fonts">
     <font>fonts\font_default</font>

@@ -32,17 +32,15 @@ view_wview[0] = DEFAULT_SCREEN_X; //320;
 view_hview[0] = DEFAULT_SCREEN_Y; //240;
 
 //shake distances
-ShakeOffsetX = 0;
-ShakeOffsetY = 0;
-ShakePower = 5
+ShakePower = 5 //global.Shakepower? 
 ShakeDecayRate = 0;
+
+//if event is not happening, else true
+ShakeMode = shakemodes.shake_off;
 
 //4th wall stuff
 WindowX = window_get_x();
 WindowY = window_get_y();
-
-//if event is not happening, else true
-ShakeMode = shakemodes.shake_off;
 
 //darkness effect
 Darkness = 1;
@@ -72,71 +70,44 @@ DarknessSpeed = 0.1;
           <argument>
             <kind>1</kind>
             <string>///camera code + shaking
-var FullScreen, SkipShake, RandX, RandY;
+var FullScreen, SkipShake;
 FullScreen = window_get_fullscreen();
-RandX = irandom_range(-ShakePower,ShakePower);
-RandY = irandom_range(-ShakePower,ShakePower);
+
 ShakePower -= ShakeDecayRate;
 SkipShake = false;
 
-//set the view position
-view_xview[0] = clamp(obj_player.x -(view_wview[0] * 0.5), 0, (room_width -view_wview[0]));
-view_yview[0] = clamp(obj_player.y -(view_hview[0] * 0.5), 0, (room_height -view_hview[0]));
-
 //skip the shake if it's not needed.
 if (ShakeMode == shakemodes.shake_off) or (ShakePower &lt;= 0) {
-   SkipShake = true;
-   //also, get the window position
-   if FullScreen = false {
-      WindowX = window_get_x();
-      WindowY = window_get_y(); 
-      }
-   }
+    SkipShake = true;
+    //also, get the window position
+    if FullScreen = false {
+        WindowX = window_get_x();
+        WindowY = window_get_y(); 
+        }
+    }
+
+//set the view position
+if instance_exists(obj_player) {
+    view_xview[0] = clamp(obj_player.x -(view_wview[0] * 0.5), 0, (room_width -view_wview[0]));
+    view_yview[0] = clamp(obj_player.y -(view_hview[0] * 0.5), 0, (room_height -view_hview[0]));
+    }
    
 //shake it
 if SkipShake == false {
-   
-    //4thwall shaking
-    if ShakeMode == shakemodes.shake_4thwall {
-       if FullScreen == false {
-          window_set_position(WindowX + RandX, WindowY + RandY); 
-          }
-       if FullScreen == true {
-          ShakeOffsetX = RandX;
-          ShakeOffsetY = RandY;
-          }
-       } 
-       
-    // normal shaking
-    if ShakeMode != shakemodes.shake_4thwall {
-        //y component
-        if (ShakeMode == shakemodes.shake_normal) or (ShakeMode == shakemodes.shake_ud) {
-            ShakeOffsetY = RandY;
-            }
-        //x component
-        if (ShakeMode == shakemodes.shake_normal) or (ShakeMode == shakemodes.shake_lr) {
-            ShakeOffsetX = RandX;
-            }   
-        }
-        
-   //apply shaking
-   view_xview[0] += ShakeOffsetX;
-   view_yview[0] += ShakeOffsetY;
-   }
-
+    scr_camera_shake(ShakePower);
+    }
 
 //set it all back to normal
-if ShakePower &lt;= 0 {
-   ShakeOffsetX = 0;
-   ShakeOffsetY = 0;
-   if not FullScreen {
-      window_set_position(WindowX, WindowY); 
-      }
-   }
+if (ShakePower &lt;= 0) and not FullScreen {
+    window_set_position(WindowX, WindowY); 
+    }
+
 </string>
           </argument>
         </arguments>
       </action>
+    </event>
+    <event eventtype="3" enumb="0">
       <action>
         <libid>1</libid>
         <id>603</id>
@@ -153,7 +124,7 @@ if ShakePower &lt;= 0 {
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>///darkness effect
+            <string>///update darkness levels
 if DarknessDirection != 0 {
    Darkness += (DarknessSpeed * sign(DarknessDirection));
    
